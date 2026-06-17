@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["academic"]
+}
+
+enum Role {
+  STUDENT
+  MENTOR
+
+  @@schema("academic")
+}
+
+enum Status {
+  PENDING
+  ACCEPTED
+  CANCELLED
+
+  @@schema("academic")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  role      Role     @default(STUDENT)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  studentMentorships Mentorship[] @relation("StudentRelation")
+  mentorMentorships  Mentorship[] @relation("MentorRelation")
+
+  @@map("users")
+  @@schema("academic")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  mentorships Mentorship[]
+
+  @@map("categories")
+  @@schema("academic")
+}
+
+model Mentorship {
+  id         Int      @id @default(autoincrement())
+  scheduleAt DateTime @map("scheduled_at")
+  status     Status   @default(PENDING)
+  notes      String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  studentId  Int @map("student_id")
+  mentorId   Int @map("mentor_id")
+  categoryId Int @map("category_id")
+
+  student  User     @relation("StudentRelation", fields: [studentId], references: [id], onDelete: Cascade)
+  mentor   User     @relation("MentorRelation", fields: [mentorId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("mentorships")
+  @@schema("academic")
+}
