@@ -1,68 +1,70 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { Mentorship } from './interfaces/mentorship.interface';
-import { UsersService } from 'src/users/users.service';
-import { CategoriesService } from 'src/categories/categories.service';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Role } from 'src/generated/prisma/enums';
+import { CreateMentorshipDto } from './dto/create-mentorship.dto';
 
 @Injectable()
 export class MentorshipsService {
-  private mentorships: Mentorship[] = [];
+  constructor(private readonly prisma: PrismaService) {}
 
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly categoriesService: CategoriesService,
-  ) {}
+  async findAll() {
+    return this.prisma.mentorship.findMany({
+      where: { isActive: true },
+    });
+  }
 
-  create(
-    studentId: number,
-    mentorId: number,
-    categoryId: number,
-    scheduleAt: string,
-    notes?: string,
-  ) {
-    const student = this.usersService.findOne(studentId);
-    const mentor = this.usersService.findOne(mentorId);
-    const category = this.categoriesService.findOne(categoryId);
+  async findOne(id: number) {
+    const mentorship = await this.prisma.mentorship.findFirst({
+      where: { id, isActive: true },
+    });
 
-    if (!student || student.role !== 'STUDENT') {
+    if (!mentorship)
+      throw new NotFoundException(`Mentoria con ID ${id} no encontrada`);
+
+    return mentorship;
+  }
+
+  async create(createMentorshipDto: CreateMentorshipDto) {
+    const { studentId, mentorId, categoryId, scheduledAt, notes } =
+      createMentorshipDto;
+
+    const student = await this.prisma.user.findFirst({
+      where: { id: studentId, isActive: true },
+    });
+    if (!student || student.role !== Role.STUDENT) {
       throw new BadRequestException(
         'El ID del estudiante no es válido o no tiene el rol de STUDENT',
       );
     }
-    if (!mentor || mentor.role !== 'MENTOR') {
+
+    const mentor = await this.prisma.user.findFirst({
+      where: { id: mentorId, isActive: true },
+    });
+    if (!mentor || mentor.role !== Role.MENTOR) {
       throw new BadRequestException(
         'El ID del mentor no es válido o no tiene el rol de MENTOR',
       );
     }
+
+    const category = await this.prisma.category.findFirst({
+      where: { id: categoryId, isActive: true },
+    });
     if (!category) {
       throw new BadRequestException('La categoría especifica no existe');
     }
 
-    const newMentorship: Mentorship = {
-      id: this.mentorships.length + 1,
-      studentId,
-      mentorId,
-      categoryId,
-      scheduleAt,
-      notes,
-      status: 'PENDING',
-      isActive: true,
-    };
-
-    this.mentorships.push(newMentorship);
-    return newMentorship;
-  }
-
-  findAll(): any[] {
-    return this.mentorships
-      .filter((m) => m.isActive)
-      .map((m) => ({
-        id: m.id,
-        scheduleAt: m.scheduleAt,
-        status: m.status,
-        notes: m.notes,
-        student: this.usersService.findOne(m.studentId),
-        mentor: this.usersService.findOne(m.mentorId),
-        category: this.categoriesService.findOne(m.categoryId),
-      }));
+    return this.prisma.mentorship.create({
+      data: {
+        studentId,
+        mentorId,
+        categoryId,
+        scheduleAt: new Date(scheduledAt),
+        notes,
+      },
+    });
   }
 }

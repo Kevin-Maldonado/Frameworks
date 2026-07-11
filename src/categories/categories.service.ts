@@ -1,41 +1,55 @@
-import { Injectable } from '@nestjs/common';
-import { Category } from './interfaces/category.interface';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
-  private categories: Category[] = [
-    {
-      id: 1,
-      name: 'Programación Backend',
-      description: 'NodeJS, Python, Go',
-      isActive: true,
-    },
-    {
-      id: 2,
-      name: 'Bases de Datos',
-      description: 'PostgresSQL, MongoDB',
-      isActive: true,
-    },
-  ];
+  constructor(private readonly prisma: PrismaService) {}
 
-  findAll(): Category[] {
-    return this.categories;
+  async findAll() {
+    return this.prisma.category.findMany({
+      where: { isActive: true },
+    });
   }
 
-  findOne(id: number): Category | undefined {
-    return this.categories.find((cat) => cat.id === id);
+  async findOne(id: number) {
+    const category = await this.prisma.category.findFirst({
+      where: { id, isActive: true },
+    });
+
+    if (!category)
+      throw new NotFoundException(`Categoria con ID ${id} no encontrada`);
+
+    return category;
   }
 
-  create(name: string, description?: string): Category {
-    const newCategory: Category = {
-      id: this.categories.length + 1,
-      name,
-      description,
-      isActive: true,
-    };
+  async create(createCategoryDto: CreateCategoryDto) {
+    const exists = await this.prisma.category.findUnique({
+      where: { name: createCategoryDto.name },
+    });
+    if (exists) throw new ConflictException('La categoria ya existe');
 
-    this.categories.push(newCategory);
+    return this.prisma.category.create({ data: createCategoryDto });
+  }
 
-    return newCategory;
+  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
+    await this.findOne(id);
+    return this.prisma.category.update({
+      where: { id },
+      data: updateCategoryDto,
+    });
+  }
+
+  async remove(id: number) {
+    await this.findOne(id);
+    return this.prisma.category.update({
+      where: { id },
+      data: { isActive: false },
+    });
   }
 }

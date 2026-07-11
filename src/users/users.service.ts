@@ -1,43 +1,55 @@
-import { Injectable } from '@nestjs/common';
-import { Role, User } from './interfaces/user.interface';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [
-    {
-      id: 1,
-      name: 'Juan Alumno',
-      email: 'juan@email.com',
-      role: 'STUDENT',
-      isActive: true,
-    },
-    {
-      id: 2,
-      name: 'Maria Mentora',
-      email: 'maria@email.com',
-      role: 'MENTOR',
-      isActive: true,
-    },
-  ];
+  constructor(private readonly prisma: PrismaService) {}
 
-  findAll(): User[] {
-    return this.users.filter((u) => u.isActive);
+  async findAll() {
+    return this.prisma.user.findMany({
+      where: { isActive: true },
+    });
   }
 
-  findOne(id: number): User | undefined {
-    return this.users.find((u) => u.id === id && u.isActive);
+  async findOne(id: number) {
+    const user = await this.prisma.user.findFirst({
+      where: { id, isActive: true },
+    });
+
+    if (!user)
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+
+    return user;
   }
 
-  create(name: string, email: string, role: Role): User {
-    const newUser: User = {
-      id: this.users.length + 1,
-      name,
-      email,
-      role,
-      isActive: true,
-    };
+  async create(createUserDto: CreateUserDto) {
+    const exists = await this.prisma.user.findUnique({
+      where: { email: createUserDto.email },
+    });
+    if (exists) throw new ConflictException('El usuario ya existe');
 
-    this.users.push(newUser);
-    return newUser;
+    return this.prisma.user.create({ data: createUserDto });
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    await this.findOne(id);
+    return this.prisma.user.update({
+      where: { id },
+      data: updateUserDto,
+    });
+  }
+
+  async remove(id: number) {
+    await this.findOne(id);
+    return this.prisma.user.update({
+      where: { id },
+      data: { isActive: false },
+    });
   }
 }
