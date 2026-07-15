@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Role } from 'src/generated/prisma/enums';
+import { Role, Status } from 'src/generated/prisma/enums';
 import { CreateMentorshipDto } from './dto/create-mentorship.dto';
 
 @Injectable()
@@ -65,6 +65,13 @@ export class MentorshipsService {
         scheduleAt: new Date(scheduledAt),
         notes,
       },
+    });
+  }
+
+  async updateStatus(id: number, status: Status) {
+    return this.prisma.mentorship.update({
+      where: { id },
+      data: { status },
     });
   }
 }

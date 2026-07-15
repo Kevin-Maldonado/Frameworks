@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 import {
@@ -16,7 +17,10 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { MentorshipsService } from './mentorships.service';
-import { CreateMentorshipDto } from './dto/create-mentorship.dto';
+import {
+  CreateMentorshipDto,
+  UpdateMentorShipStatusDto,
+} from './dto/create-mentorship.dto';
 import { MentorshipEntity } from './entities/mentorship.entity';
 
 @ApiTags('Mentorships')
@@ -59,5 +63,20 @@ export class MentorshipsController {
   })
   create(@Body() createMentorshipDto: CreateMentorshipDto) {
     return this.mentorshipsService.create(createMentorshipDto);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Actualizar el estado de una mentoria' })
+  @ApiParam({ name: 'id', description: 'ID de la mentoria', example: 1 })
+  @ApiOkResponse({
+    description: 'Mentoria actualizada exitosamente',
+    type: CreateMentorshipDto,
+  })
+  @ApiNotFoundResponse({ description: 'La mentoria no existe' })
+  updateStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: UpdateMentorShipStatusDto,
+  ) {
+    return this.mentorshipsService.updateStatus(id, body.status);
   }
 }
