@@ -1,28 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsEnum, IsString, MinLength } from 'class-validator';
-import { Role } from 'src/generated/prisma/enums';
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Role } from '../../generated/prisma/enums';
 
 export class CreateUserDto {
-  @ApiProperty({
-    description: 'Correo electronico unico del usuario',
-    example: 'juan@email.com',
-  })
-  @IsEmail({}, { message: 'El correo electronico no es valido' })
-  email!: string;
-
-  @ApiProperty({
-    description: 'Nombre completo del usuario',
-    example: 'Juan Alumno',
-  })
   @IsString()
-  @MinLength(2, { message: 'El nombre debe tener al menos 2 caracteres' })
-  name!: string;
+  @IsNotEmpty({ message: 'El nombre es obligatorio' })
+  name: string;
 
-  @ApiProperty({
-    description: 'Rol del usuario dentro del sistema',
-    enum: Role,
-    example: Role.STUDENT,
-  })
-  @IsEnum(Role, { message: 'El rol no es valido, debe ser STUDENT o MENTOR' })
-  role!: Role;
+  @IsEmail({}, { message: 'Debe proporcionar un email válido' })
+  email: string;
+
+  @IsEnum(Role)
+  @IsOptional()
+  role?: Role;
 }

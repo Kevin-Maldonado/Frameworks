@@ -224,8 +224,7 @@ export type UserWhereInput = {
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   isActive?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  studentMentorships?: Prisma.MentorshipListRelationFilter
-  mentorMentorships?: Prisma.MentorshipListRelationFilter
+  mantenimientos?: Prisma.MantenimientoListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -235,8 +234,7 @@ export type UserOrderByWithRelationInput = {
   role?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  studentMentorships?: Prisma.MentorshipOrderByRelationAggregateInput
-  mentorMentorships?: Prisma.MentorshipOrderByRelationAggregateInput
+  mantenimientos?: Prisma.MantenimientoOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -249,8 +247,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   isActive?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  studentMentorships?: Prisma.MentorshipListRelationFilter
-  mentorMentorships?: Prisma.MentorshipListRelationFilter
+  mantenimientos?: Prisma.MantenimientoListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -285,8 +282,7 @@ export type UserCreateInput = {
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  studentMentorships?: Prisma.MentorshipCreateNestedManyWithoutStudentInput
-  mentorMentorships?: Prisma.MentorshipCreateNestedManyWithoutMentorInput
+  mantenimientos?: Prisma.MantenimientoCreateNestedManyWithoutTechnicianInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -296,8 +292,7 @@ export type UserUncheckedCreateInput = {
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  studentMentorships?: Prisma.MentorshipUncheckedCreateNestedManyWithoutStudentInput
-  mentorMentorships?: Prisma.MentorshipUncheckedCreateNestedManyWithoutMentorInput
+  mantenimientos?: Prisma.MantenimientoUncheckedCreateNestedManyWithoutTechnicianInput
 }
 
 export type UserUpdateInput = {
@@ -306,8 +301,7 @@ export type UserUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studentMentorships?: Prisma.MentorshipUpdateManyWithoutStudentNestedInput
-  mentorMentorships?: Prisma.MentorshipUpdateManyWithoutMentorNestedInput
+  mantenimientos?: Prisma.MantenimientoUpdateManyWithoutTechnicianNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -317,8 +311,7 @@ export type UserUncheckedUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studentMentorships?: Prisma.MentorshipUncheckedUpdateManyWithoutStudentNestedInput
-  mentorMentorships?: Prisma.MentorshipUncheckedUpdateManyWithoutMentorNestedInput
+  mantenimientos?: Prisma.MantenimientoUncheckedUpdateManyWithoutTechnicianNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -411,140 +404,68 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type UserCreateNestedOneWithoutStudentMentorshipsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudentMentorshipsInput, Prisma.UserUncheckedCreateWithoutStudentMentorshipsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudentMentorshipsInput
+export type UserCreateNestedOneWithoutMantenimientosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMantenimientosInput, Prisma.UserUncheckedCreateWithoutMantenimientosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMantenimientosInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserCreateNestedOneWithoutMentorMentorshipsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorMentorshipsInput, Prisma.UserUncheckedCreateWithoutMentorMentorshipsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorMentorshipsInput
+export type UserUpdateOneRequiredWithoutMantenimientosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMantenimientosInput, Prisma.UserUncheckedCreateWithoutMantenimientosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMantenimientosInput
+  upsert?: Prisma.UserUpsertWithoutMantenimientosInput
   connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMantenimientosInput, Prisma.UserUpdateWithoutMantenimientosInput>, Prisma.UserUncheckedUpdateWithoutMantenimientosInput>
 }
 
-export type UserUpdateOneRequiredWithoutStudentMentorshipsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStudentMentorshipsInput, Prisma.UserUncheckedCreateWithoutStudentMentorshipsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStudentMentorshipsInput
-  upsert?: Prisma.UserUpsertWithoutStudentMentorshipsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStudentMentorshipsInput, Prisma.UserUpdateWithoutStudentMentorshipsInput>, Prisma.UserUncheckedUpdateWithoutStudentMentorshipsInput>
-}
-
-export type UserUpdateOneRequiredWithoutMentorMentorshipsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorMentorshipsInput, Prisma.UserUncheckedCreateWithoutMentorMentorshipsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorMentorshipsInput
-  upsert?: Prisma.UserUpsertWithoutMentorMentorshipsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentorMentorshipsInput, Prisma.UserUpdateWithoutMentorMentorshipsInput>, Prisma.UserUncheckedUpdateWithoutMentorMentorshipsInput>
-}
-
-export type UserCreateWithoutStudentMentorshipsInput = {
+export type UserCreateWithoutMantenimientosInput = {
   name: string
   email: string
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  mentorMentorships?: Prisma.MentorshipCreateNestedManyWithoutMentorInput
 }
 
-export type UserUncheckedCreateWithoutStudentMentorshipsInput = {
+export type UserUncheckedCreateWithoutMantenimientosInput = {
   id?: number
   name: string
   email: string
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  mentorMentorships?: Prisma.MentorshipUncheckedCreateNestedManyWithoutMentorInput
 }
 
-export type UserCreateOrConnectWithoutStudentMentorshipsInput = {
+export type UserCreateOrConnectWithoutMantenimientosInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutStudentMentorshipsInput, Prisma.UserUncheckedCreateWithoutStudentMentorshipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMantenimientosInput, Prisma.UserUncheckedCreateWithoutMantenimientosInput>
 }
 
-export type UserCreateWithoutMentorMentorshipsInput = {
-  name: string
-  email: string
-  role?: $Enums.Role
-  isActive?: boolean
-  createdAt?: Date | string
-  studentMentorships?: Prisma.MentorshipCreateNestedManyWithoutStudentInput
-}
-
-export type UserUncheckedCreateWithoutMentorMentorshipsInput = {
-  id?: number
-  name: string
-  email: string
-  role?: $Enums.Role
-  isActive?: boolean
-  createdAt?: Date | string
-  studentMentorships?: Prisma.MentorshipUncheckedCreateNestedManyWithoutStudentInput
-}
-
-export type UserCreateOrConnectWithoutMentorMentorshipsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutMentorMentorshipsInput, Prisma.UserUncheckedCreateWithoutMentorMentorshipsInput>
-}
-
-export type UserUpsertWithoutStudentMentorshipsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutStudentMentorshipsInput, Prisma.UserUncheckedUpdateWithoutStudentMentorshipsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutStudentMentorshipsInput, Prisma.UserUncheckedCreateWithoutStudentMentorshipsInput>
+export type UserUpsertWithoutMantenimientosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMantenimientosInput, Prisma.UserUncheckedUpdateWithoutMantenimientosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMantenimientosInput, Prisma.UserUncheckedCreateWithoutMantenimientosInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutStudentMentorshipsInput = {
+export type UserUpdateToOneWithWhereWithoutMantenimientosInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutStudentMentorshipsInput, Prisma.UserUncheckedUpdateWithoutStudentMentorshipsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMantenimientosInput, Prisma.UserUncheckedUpdateWithoutMantenimientosInput>
 }
 
-export type UserUpdateWithoutStudentMentorshipsInput = {
+export type UserUpdateWithoutMantenimientosInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mentorMentorships?: Prisma.MentorshipUpdateManyWithoutMentorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutStudentMentorshipsInput = {
+export type UserUncheckedUpdateWithoutMantenimientosInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mentorMentorships?: Prisma.MentorshipUncheckedUpdateManyWithoutMentorNestedInput
-}
-
-export type UserUpsertWithoutMentorMentorshipsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutMentorMentorshipsInput, Prisma.UserUncheckedUpdateWithoutMentorMentorshipsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutMentorMentorshipsInput, Prisma.UserUncheckedCreateWithoutMentorMentorshipsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutMentorMentorshipsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutMentorMentorshipsInput, Prisma.UserUncheckedUpdateWithoutMentorMentorshipsInput>
-}
-
-export type UserUpdateWithoutMentorMentorshipsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studentMentorships?: Prisma.MentorshipUpdateManyWithoutStudentNestedInput
-}
-
-export type UserUncheckedUpdateWithoutMentorMentorshipsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studentMentorships?: Prisma.MentorshipUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 
@@ -553,13 +474,11 @@ export type UserUncheckedUpdateWithoutMentorMentorshipsInput = {
  */
 
 export type UserCountOutputType = {
-  studentMentorships: number
-  mentorMentorships: number
+  mantenimientos: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentMentorships?: boolean | UserCountOutputTypeCountStudentMentorshipsArgs
-  mentorMentorships?: boolean | UserCountOutputTypeCountMentorMentorshipsArgs
+  mantenimientos?: boolean | UserCountOutputTypeCountMantenimientosArgs
 }
 
 /**
@@ -575,15 +494,8 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountStudentMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MentorshipWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountMentorMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MentorshipWhereInput
+export type UserCountOutputTypeCountMantenimientosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MantenimientoWhereInput
 }
 
 
@@ -594,8 +506,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   role?: boolean
   isActive?: boolean
   createdAt?: boolean
-  studentMentorships?: boolean | Prisma.User$studentMentorshipsArgs<ExtArgs>
-  mentorMentorships?: boolean | Prisma.User$mentorMentorshipsArgs<ExtArgs>
+  mantenimientos?: boolean | Prisma.User$mantenimientosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -628,8 +539,7 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "role" | "isActive" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentMentorships?: boolean | Prisma.User$studentMentorshipsArgs<ExtArgs>
-  mentorMentorships?: boolean | Prisma.User$mentorMentorshipsArgs<ExtArgs>
+  mantenimientos?: boolean | Prisma.User$mantenimientosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -638,8 +548,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    studentMentorships: Prisma.$MentorshipPayload<ExtArgs>[]
-    mentorMentorships: Prisma.$MentorshipPayload<ExtArgs>[]
+    mantenimientos: Prisma.$MantenimientoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1042,8 +951,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  studentMentorships<T extends Prisma.User$studentMentorshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentMentorshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  mentorMentorships<T extends Prisma.User$mentorMentorshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentorMentorshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mantenimientos<T extends Prisma.User$mantenimientosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mantenimientosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MantenimientoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1472,51 +1380,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.studentMentorships
+ * User.mantenimientos
  */
-export type User$studentMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$mantenimientosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Mentorship
+   * Select specific fields to fetch from the Mantenimiento
    */
-  select?: Prisma.MentorshipSelect<ExtArgs> | null
+  select?: Prisma.MantenimientoSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Mentorship
+   * Omit specific fields from the Mantenimiento
    */
-  omit?: Prisma.MentorshipOmit<ExtArgs> | null
+  omit?: Prisma.MantenimientoOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MentorshipInclude<ExtArgs> | null
-  where?: Prisma.MentorshipWhereInput
-  orderBy?: Prisma.MentorshipOrderByWithRelationInput | Prisma.MentorshipOrderByWithRelationInput[]
-  cursor?: Prisma.MentorshipWhereUniqueInput
+  include?: Prisma.MantenimientoInclude<ExtArgs> | null
+  where?: Prisma.MantenimientoWhereInput
+  orderBy?: Prisma.MantenimientoOrderByWithRelationInput | Prisma.MantenimientoOrderByWithRelationInput[]
+  cursor?: Prisma.MantenimientoWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MentorshipScalarFieldEnum | Prisma.MentorshipScalarFieldEnum[]
-}
-
-/**
- * User.mentorMentorships
- */
-export type User$mentorMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Mentorship
-   */
-  select?: Prisma.MentorshipSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Mentorship
-   */
-  omit?: Prisma.MentorshipOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MentorshipInclude<ExtArgs> | null
-  where?: Prisma.MentorshipWhereInput
-  orderBy?: Prisma.MentorshipOrderByWithRelationInput | Prisma.MentorshipOrderByWithRelationInput[]
-  cursor?: Prisma.MentorshipWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MentorshipScalarFieldEnum | Prisma.MentorshipScalarFieldEnum[]
+  distinct?: Prisma.MantenimientoScalarFieldEnum | Prisma.MantenimientoScalarFieldEnum[]
 }
 
 /**

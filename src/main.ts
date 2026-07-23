@@ -1,11 +1,14 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.setGlobalPrefix('api/v1');
+
+  // Validaciones globales
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -14,23 +17,18 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors();
+
+  // Configuración de Swagger UI
   const config = new DocumentBuilder()
-    .setTitle('API de Mentorias Academicas')
-    .setDescription(
-      'Sistema integral para la gestion de mentorias, alumnos y categorias de asignaturas',
-    )
+    .setTitle('API de Gestión de Inventarios y Mantenimientos')
+    .setDescription('Documentación interactiva de la API RESTful')
     .setVersion('1.0')
-    .addTag('Users', 'Operaciones con Mentores y Estudiantes')
-    .addTag('Categories', 'Gestion de areas de conocimiento')
-    .addTag('Mentorships', 'Transacciones y flujo de citas de mentorias')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('docs', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT || 3000);
 }
-bootstrap().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+bootstrap();

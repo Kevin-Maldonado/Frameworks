@@ -10,17 +10,27 @@
 */
 
 export const Role = {
-  STUDENT: 'STUDENT',
-  MENTOR: 'MENTOR'
+  ADMIN: 'ADMIN',
+  TECNICO: 'TECNICO'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 
-export const Status = {
+export const EquipoStatus = {
+  DISPONIBLE: 'DISPONIBLE',
+  EN_MANTENIMIENTO: 'EN_MANTENIMIENTO',
+  BAJA: 'BAJA'
+} as const
+
+export type EquipoStatus = (typeof EquipoStatus)[keyof typeof EquipoStatus]
+
+
+export const MantenimientoStatus = {
   PENDING: 'PENDING',
-  ACCEPTED: 'ACCEPTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
   CANCELLED: 'CANCELLED'
 } as const
 
-export type Status = (typeof Status)[keyof typeof Status]
+export type MantenimientoStatus = (typeof MantenimientoStatus)[keyof typeof MantenimientoStatus]

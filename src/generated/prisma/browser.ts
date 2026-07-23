@@ -28,7 +28,12 @@ export type User = Prisma.UserModel
  */
 export type Category = Prisma.CategoryModel
 /**
- * Model Mentorship
+ * Model Equipo
  * 
  */
-export type Mentorship = Prisma.MentorshipModel
+export type Equipo = Prisma.EquipoModel
+/**
+ * Model Mantenimiento
+ * 
+ */
+export type Mantenimiento = Prisma.MantenimientoModel

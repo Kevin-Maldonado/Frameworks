@@ -216,7 +216,7 @@ export type CategoryWhereInput = {
   description?: Prisma.StringNullableFilter<"Category"> | string | null
   isActive?: Prisma.BoolFilter<"Category"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
-  mentorships?: Prisma.MentorshipListRelationFilter
+  equipos?: Prisma.EquipoListRelationFilter
 }
 
 export type CategoryOrderByWithRelationInput = {
@@ -225,7 +225,7 @@ export type CategoryOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  mentorships?: Prisma.MentorshipOrderByRelationAggregateInput
+  equipos?: Prisma.EquipoOrderByRelationAggregateInput
 }
 
 export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -237,7 +237,7 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Category"> | string | null
   isActive?: Prisma.BoolFilter<"Category"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
-  mentorships?: Prisma.MentorshipListRelationFilter
+  equipos?: Prisma.EquipoListRelationFilter
 }, "id" | "name">
 
 export type CategoryOrderByWithAggregationInput = {
@@ -269,7 +269,7 @@ export type CategoryCreateInput = {
   description?: string | null
   isActive?: boolean
   createdAt?: Date | string
-  mentorships?: Prisma.MentorshipCreateNestedManyWithoutCategoryInput
+  equipos?: Prisma.EquipoCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
@@ -278,7 +278,7 @@ export type CategoryUncheckedCreateInput = {
   description?: string | null
   isActive?: boolean
   createdAt?: Date | string
-  mentorships?: Prisma.MentorshipUncheckedCreateNestedManyWithoutCategoryInput
+  equipos?: Prisma.EquipoUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUpdateInput = {
@@ -286,7 +286,7 @@ export type CategoryUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mentorships?: Prisma.MentorshipUpdateManyWithoutCategoryNestedInput
+  equipos?: Prisma.EquipoUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateInput = {
@@ -295,7 +295,7 @@ export type CategoryUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mentorships?: Prisma.MentorshipUncheckedUpdateManyWithoutCategoryNestedInput
+  equipos?: Prisma.EquipoUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyInput = {
@@ -362,28 +362,28 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type CategoryCreateNestedOneWithoutMentorshipsInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutMentorshipsInput, Prisma.CategoryUncheckedCreateWithoutMentorshipsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutMentorshipsInput
+export type CategoryCreateNestedOneWithoutEquiposInput = {
+  create?: Prisma.XOR<Prisma.CategoryCreateWithoutEquiposInput, Prisma.CategoryUncheckedCreateWithoutEquiposInput>
+  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutEquiposInput
   connect?: Prisma.CategoryWhereUniqueInput
 }
 
-export type CategoryUpdateOneRequiredWithoutMentorshipsNestedInput = {
-  create?: Prisma.XOR<Prisma.CategoryCreateWithoutMentorshipsInput, Prisma.CategoryUncheckedCreateWithoutMentorshipsInput>
-  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutMentorshipsInput
-  upsert?: Prisma.CategoryUpsertWithoutMentorshipsInput
+export type CategoryUpdateOneRequiredWithoutEquiposNestedInput = {
+  create?: Prisma.XOR<Prisma.CategoryCreateWithoutEquiposInput, Prisma.CategoryUncheckedCreateWithoutEquiposInput>
+  connectOrCreate?: Prisma.CategoryCreateOrConnectWithoutEquiposInput
+  upsert?: Prisma.CategoryUpsertWithoutEquiposInput
   connect?: Prisma.CategoryWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutMentorshipsInput, Prisma.CategoryUpdateWithoutMentorshipsInput>, Prisma.CategoryUncheckedUpdateWithoutMentorshipsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CategoryUpdateToOneWithWhereWithoutEquiposInput, Prisma.CategoryUpdateWithoutEquiposInput>, Prisma.CategoryUncheckedUpdateWithoutEquiposInput>
 }
 
-export type CategoryCreateWithoutMentorshipsInput = {
+export type CategoryCreateWithoutEquiposInput = {
   name: string
   description?: string | null
   isActive?: boolean
   createdAt?: Date | string
 }
 
-export type CategoryUncheckedCreateWithoutMentorshipsInput = {
+export type CategoryUncheckedCreateWithoutEquiposInput = {
   id?: number
   name: string
   description?: string | null
@@ -391,30 +391,30 @@ export type CategoryUncheckedCreateWithoutMentorshipsInput = {
   createdAt?: Date | string
 }
 
-export type CategoryCreateOrConnectWithoutMentorshipsInput = {
+export type CategoryCreateOrConnectWithoutEquiposInput = {
   where: Prisma.CategoryWhereUniqueInput
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutMentorshipsInput, Prisma.CategoryUncheckedCreateWithoutMentorshipsInput>
+  create: Prisma.XOR<Prisma.CategoryCreateWithoutEquiposInput, Prisma.CategoryUncheckedCreateWithoutEquiposInput>
 }
 
-export type CategoryUpsertWithoutMentorshipsInput = {
-  update: Prisma.XOR<Prisma.CategoryUpdateWithoutMentorshipsInput, Prisma.CategoryUncheckedUpdateWithoutMentorshipsInput>
-  create: Prisma.XOR<Prisma.CategoryCreateWithoutMentorshipsInput, Prisma.CategoryUncheckedCreateWithoutMentorshipsInput>
+export type CategoryUpsertWithoutEquiposInput = {
+  update: Prisma.XOR<Prisma.CategoryUpdateWithoutEquiposInput, Prisma.CategoryUncheckedUpdateWithoutEquiposInput>
+  create: Prisma.XOR<Prisma.CategoryCreateWithoutEquiposInput, Prisma.CategoryUncheckedCreateWithoutEquiposInput>
   where?: Prisma.CategoryWhereInput
 }
 
-export type CategoryUpdateToOneWithWhereWithoutMentorshipsInput = {
+export type CategoryUpdateToOneWithWhereWithoutEquiposInput = {
   where?: Prisma.CategoryWhereInput
-  data: Prisma.XOR<Prisma.CategoryUpdateWithoutMentorshipsInput, Prisma.CategoryUncheckedUpdateWithoutMentorshipsInput>
+  data: Prisma.XOR<Prisma.CategoryUpdateWithoutEquiposInput, Prisma.CategoryUncheckedUpdateWithoutEquiposInput>
 }
 
-export type CategoryUpdateWithoutMentorshipsInput = {
+export type CategoryUpdateWithoutEquiposInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type CategoryUncheckedUpdateWithoutMentorshipsInput = {
+export type CategoryUncheckedUpdateWithoutEquiposInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -428,11 +428,11 @@ export type CategoryUncheckedUpdateWithoutMentorshipsInput = {
  */
 
 export type CategoryCountOutputType = {
-  mentorships: number
+  equipos: number
 }
 
 export type CategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  mentorships?: boolean | CategoryCountOutputTypeCountMentorshipsArgs
+  equipos?: boolean | CategoryCountOutputTypeCountEquiposArgs
 }
 
 /**
@@ -448,8 +448,8 @@ export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * CategoryCountOutputType without action
  */
-export type CategoryCountOutputTypeCountMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MentorshipWhereInput
+export type CategoryCountOutputTypeCountEquiposArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EquipoWhereInput
 }
 
 
@@ -459,7 +459,7 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   description?: boolean
   isActive?: boolean
   createdAt?: boolean
-  mentorships?: boolean | Prisma.Category$mentorshipsArgs<ExtArgs>
+  equipos?: boolean | Prisma.Category$equiposArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["category"]>
 
@@ -489,7 +489,7 @@ export type CategorySelectScalar = {
 
 export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "isActive" | "createdAt", ExtArgs["result"]["category"]>
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  mentorships?: boolean | Prisma.Category$mentorshipsArgs<ExtArgs>
+  equipos?: boolean | Prisma.Category$equiposArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -498,7 +498,7 @@ export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Category"
   objects: {
-    mentorships: Prisma.$MentorshipPayload<ExtArgs>[]
+    equipos: Prisma.$EquipoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -900,7 +900,7 @@ readonly fields: CategoryFieldRefs;
  */
 export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  mentorships<T extends Prisma.Category$mentorshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$mentorshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorshipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  equipos<T extends Prisma.Category$equiposArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Category$equiposArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EquipoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1328,27 +1328,27 @@ export type CategoryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Category.mentorships
+ * Category.equipos
  */
-export type Category$mentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Category$equiposArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Mentorship
+   * Select specific fields to fetch from the Equipo
    */
-  select?: Prisma.MentorshipSelect<ExtArgs> | null
+  select?: Prisma.EquipoSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Mentorship
+   * Omit specific fields from the Equipo
    */
-  omit?: Prisma.MentorshipOmit<ExtArgs> | null
+  omit?: Prisma.EquipoOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.MentorshipInclude<ExtArgs> | null
-  where?: Prisma.MentorshipWhereInput
-  orderBy?: Prisma.MentorshipOrderByWithRelationInput | Prisma.MentorshipOrderByWithRelationInput[]
-  cursor?: Prisma.MentorshipWhereUniqueInput
+  include?: Prisma.EquipoInclude<ExtArgs> | null
+  where?: Prisma.EquipoWhereInput
+  orderBy?: Prisma.EquipoOrderByWithRelationInput | Prisma.EquipoOrderByWithRelationInput[]
+  cursor?: Prisma.EquipoWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.MentorshipScalarFieldEnum | Prisma.MentorshipScalarFieldEnum[]
+  distinct?: Prisma.EquipoScalarFieldEnum | Prisma.EquipoScalarFieldEnum[]
 }
 
 /**

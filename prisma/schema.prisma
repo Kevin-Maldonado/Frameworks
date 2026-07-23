@@ -6,64 +6,113 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  schemas  = ["academic"]
+  schemas  = ["inventory"]
 }
 
+// ==========================================
+// USUARIOS (Técnicos y Administradores)
+// ==========================================
 model User {
-  id                 Int          @id @default(autoincrement())
-  name               String
-  email              String       @unique
-  role               Role         @default(STUDENT)
-  isActive           Boolean      @default(true)
-  createdAt          DateTime     @default(now()) @map("created_at")
-  mentorMentorships  Mentorship[] @relation("MentorRelation")
-  studentMentorships Mentorship[] @relation("StudentRelation")
+  id             Int             @id @default(autoincrement())
+  name           String
+  email          String          @unique
+  role           Role            @default(TECNICO)
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now()) @map("created_at")
+  
+  // Relación con los mantenimientos asignados a este usuario/técnico
+  mantenimientos Mantenimiento[]
 
   @@map("users")
-  @@schema("academic")
+  @@schema("inventory")
 }
 
+// ==========================================
+// CATEGORÍAS DE EQUIPOS (ej. Cómputo, Redes)
+// ==========================================
 model Category {
-  id          Int          @id @default(autoincrement())
-  name        String       @unique
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
   description String?
-  isActive    Boolean      @default(true)
-  createdAt   DateTime     @default(now()) @map("created_at")
-  mentorships Mentorship[]
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  // Relación: Una categoría tiene varios equipos
+  equipos     Equipo[]
 
   @@map("categories")
-  @@schema("academic")
+  @@schema("inventory")
 }
 
-model Mentorship {
-  id         Int      @id @default(autoincrement())
-  scheduleAt DateTime @map("scheduled_at")
-  status     Status   @default(PENDING)
-  notes      String?
-  isActive   Boolean  @default(true)
-  createdAt  DateTime @default(now()) @map("created_at")
-  studentId  Int      @map("student_id")
-  mentorId   Int      @map("mentor_id")
-  categoryId Int      @map("category_id")
-  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  mentor     User     @relation("MentorRelation", fields: [mentorId], references: [id], onDelete: Cascade)
-  student    User     @relation("StudentRelation", fields: [studentId], references: [id], onDelete: Cascade)
+// ==========================================
+// INVENTARIO DE EQUIPOS
+// ==========================================
+model Equipo {
+  id             Int             @id @default(autoincrement())
+  serialNumber   String          @unique @map("serial_number")
+  name           String
+  location       String?
+  status         EquipoStatus    @default(DISPONIBLE)
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now()) @map("created_at")
+  
+  // Clave foránea hacia Categoría
+  categoryId     Int             @map("category_id")
+  category       Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // Relación: Un equipo puede tener múltiples mantenimientos
+  mantenimientos Mantenimiento[]
 
-  @@map("mentorships")
-  @@schema("academic")
+  @@map("equipos")
+  @@schema("inventory")
 }
 
+// ==========================================
+// REGISTRO DE MANTENIMIENTOS
+// ==========================================
+model Mantenimiento {
+  id          Int                 @id @default(autoincrement())
+  scheduledAt DateTime            @map("scheduled_at")
+  status      MantenimientoStatus @default(PENDING)
+  notes       String?
+  cost        Float               @default(0.0)
+  isActive    Boolean             @default(true)
+  createdAt   DateTime            @default(now()) @map("created_at")
+  
+  // Claves foráneas para Equipo y Técnico asignado
+  equipoId    Int                 @map("equipo_id")
+  technicianId Int                @map("technician_id")
+  
+  equipo      Equipo              @relation(fields: [equipoId], references: [id], onDelete: Cascade)
+  technician  User                @relation(fields: [technicianId], references: [id], onDelete: Cascade)
+
+  @@map("mantenimientos")
+  @@schema("inventory")
+}
+
+// ==========================================
+// ENUMS
+// ==========================================
 enum Role {
-  STUDENT
-  MENTOR
+  ADMIN
+  TECNICO
 
-  @@schema("academic")
+  @@schema("inventory")
 }
 
-enum Status {
+enum EquipoStatus {
+  DISPONIBLE
+  EN_MANTENIMIENTO
+  BAJA
+
+  @@schema("inventory")
+}
+
+enum MantenimientoStatus {
   PENDING
-  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
   CANCELLED
 
-  @@schema("academic")
+  @@schema("inventory")
 }

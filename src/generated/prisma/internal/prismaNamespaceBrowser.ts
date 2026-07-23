@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Category: 'Category',
-  Mentorship: 'Mentorship'
+  Equipo: 'Equipo',
+  Mantenimiento: 'Mantenimiento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -95,19 +96,33 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
-export const MentorshipScalarFieldEnum = {
+export const EquipoScalarFieldEnum = {
   id: 'id',
-  scheduleAt: 'scheduleAt',
+  serialNumber: 'serialNumber',
+  name: 'name',
+  location: 'location',
   status: 'status',
-  notes: 'notes',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  studentId: 'studentId',
-  mentorId: 'mentorId',
   categoryId: 'categoryId'
 } as const
 
-export type MentorshipScalarFieldEnum = (typeof MentorshipScalarFieldEnum)[keyof typeof MentorshipScalarFieldEnum]
+export type EquipoScalarFieldEnum = (typeof EquipoScalarFieldEnum)[keyof typeof EquipoScalarFieldEnum]
+
+
+export const MantenimientoScalarFieldEnum = {
+  id: 'id',
+  scheduledAt: 'scheduledAt',
+  status: 'status',
+  notes: 'notes',
+  cost: 'cost',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  equipoId: 'equipoId',
+  technicianId: 'technicianId'
+} as const
+
+export type MantenimientoScalarFieldEnum = (typeof MantenimientoScalarFieldEnum)[keyof typeof MantenimientoScalarFieldEnum]
 
 
 export const SortOrder = {

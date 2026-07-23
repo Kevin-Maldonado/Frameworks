@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Category: 'Category',
-  Mentorship: 'Mentorship'
+  Equipo: 'Equipo',
+  Mantenimiento: 'Mantenimiento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "category" | "mentorship"
+    modelProps: "user" | "category" | "equipo" | "mantenimiento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -554,77 +555,151 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Mentorship: {
-      payload: Prisma.$MentorshipPayload<ExtArgs>
-      fields: Prisma.MentorshipFieldRefs
+    Equipo: {
+      payload: Prisma.$EquipoPayload<ExtArgs>
+      fields: Prisma.EquipoFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.MentorshipFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload> | null
+          args: Prisma.EquipoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.MentorshipFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         findFirst: {
-          args: Prisma.MentorshipFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload> | null
+          args: Prisma.EquipoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.MentorshipFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         findMany: {
-          args: Prisma.MentorshipFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>[]
+          args: Prisma.EquipoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>[]
         }
         create: {
-          args: Prisma.MentorshipCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         createMany: {
-          args: Prisma.MentorshipCreateManyArgs<ExtArgs>
+          args: Prisma.EquipoCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.MentorshipCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>[]
+          args: Prisma.EquipoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>[]
         }
         delete: {
-          args: Prisma.MentorshipDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         update: {
-          args: Prisma.MentorshipUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         deleteMany: {
-          args: Prisma.MentorshipDeleteManyArgs<ExtArgs>
+          args: Prisma.EquipoDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.MentorshipUpdateManyArgs<ExtArgs>
+          args: Prisma.EquipoUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.MentorshipUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>[]
+          args: Prisma.EquipoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>[]
         }
         upsert: {
-          args: Prisma.MentorshipUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MentorshipPayload>
+          args: Prisma.EquipoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EquipoPayload>
         }
         aggregate: {
-          args: Prisma.MentorshipAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateMentorship>
+          args: Prisma.EquipoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEquipo>
         }
         groupBy: {
-          args: Prisma.MentorshipGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MentorshipGroupByOutputType>[]
+          args: Prisma.EquipoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EquipoGroupByOutputType>[]
         }
         count: {
-          args: Prisma.MentorshipCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MentorshipCountAggregateOutputType> | number
+          args: Prisma.EquipoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EquipoCountAggregateOutputType> | number
+        }
+      }
+    }
+    Mantenimiento: {
+      payload: Prisma.$MantenimientoPayload<ExtArgs>
+      fields: Prisma.MantenimientoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MantenimientoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MantenimientoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        findFirst: {
+          args: Prisma.MantenimientoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MantenimientoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        findMany: {
+          args: Prisma.MantenimientoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>[]
+        }
+        create: {
+          args: Prisma.MantenimientoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        createMany: {
+          args: Prisma.MantenimientoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MantenimientoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>[]
+        }
+        delete: {
+          args: Prisma.MantenimientoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        update: {
+          args: Prisma.MantenimientoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        deleteMany: {
+          args: Prisma.MantenimientoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MantenimientoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MantenimientoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>[]
+        }
+        upsert: {
+          args: Prisma.MantenimientoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MantenimientoPayload>
+        }
+        aggregate: {
+          args: Prisma.MantenimientoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMantenimiento>
+        }
+        groupBy: {
+          args: Prisma.MantenimientoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MantenimientoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MantenimientoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MantenimientoCountAggregateOutputType> | number
         }
       }
     }
@@ -690,19 +765,33 @@ export const CategoryScalarFieldEnum = {
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
-export const MentorshipScalarFieldEnum = {
+export const EquipoScalarFieldEnum = {
   id: 'id',
-  scheduleAt: 'scheduleAt',
+  serialNumber: 'serialNumber',
+  name: 'name',
+  location: 'location',
   status: 'status',
-  notes: 'notes',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  studentId: 'studentId',
-  mentorId: 'mentorId',
   categoryId: 'categoryId'
 } as const
 
-export type MentorshipScalarFieldEnum = (typeof MentorshipScalarFieldEnum)[keyof typeof MentorshipScalarFieldEnum]
+export type EquipoScalarFieldEnum = (typeof EquipoScalarFieldEnum)[keyof typeof EquipoScalarFieldEnum]
+
+
+export const MantenimientoScalarFieldEnum = {
+  id: 'id',
+  scheduledAt: 'scheduledAt',
+  status: 'status',
+  notes: 'notes',
+  cost: 'cost',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  equipoId: 'equipoId',
+  technicianId: 'technicianId'
+} as const
+
+export type MantenimientoScalarFieldEnum = (typeof MantenimientoScalarFieldEnum)[keyof typeof MantenimientoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -799,16 +888,30 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Status'
+ * Reference to a field of type 'EquipoStatus'
  */
-export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+export type EnumEquipoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EquipoStatus'>
     
 
 
 /**
- * Reference to a field of type 'Status[]'
+ * Reference to a field of type 'EquipoStatus[]'
  */
-export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
+export type ListEnumEquipoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EquipoStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MantenimientoStatus'
+ */
+export type EnumMantenimientoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MantenimientoStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MantenimientoStatus[]'
+ */
+export type ListEnumMantenimientoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MantenimientoStatus[]'>
     
 
 
@@ -937,7 +1040,8 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   category?: Prisma.CategoryOmit
-  mentorship?: Prisma.MentorshipOmit
+  equipo?: Prisma.EquipoOmit
+  mantenimiento?: Prisma.MantenimientoOmit
 }
 
 /* Types for Logging */
