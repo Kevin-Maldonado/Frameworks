@@ -49,7 +49,7 @@ export class MantenimientosService {
     return this.prisma.mantenimiento.findMany({
       include: {
         equipo: true,
-        technician: { select: { id: true, name: true, email: true } },
+        user: { select: { id: true, name: true, email: true } },
       },
     });
   }
