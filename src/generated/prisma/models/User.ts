@@ -282,7 +282,7 @@ export type UserCreateInput = {
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  mantenimientos?: Prisma.MantenimientoCreateNestedManyWithoutTechnicianInput
+  mantenimientos?: Prisma.MantenimientoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -292,7 +292,7 @@ export type UserUncheckedCreateInput = {
   role?: $Enums.Role
   isActive?: boolean
   createdAt?: Date | string
-  mantenimientos?: Prisma.MantenimientoUncheckedCreateNestedManyWithoutTechnicianInput
+  mantenimientos?: Prisma.MantenimientoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -301,7 +301,7 @@ export type UserUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mantenimientos?: Prisma.MantenimientoUpdateManyWithoutTechnicianNestedInput
+  mantenimientos?: Prisma.MantenimientoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -311,7 +311,7 @@ export type UserUncheckedUpdateInput = {
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mantenimientos?: Prisma.MantenimientoUncheckedUpdateManyWithoutTechnicianNestedInput
+  mantenimientos?: Prisma.MantenimientoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {

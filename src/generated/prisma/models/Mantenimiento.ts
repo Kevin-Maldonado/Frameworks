@@ -30,14 +30,14 @@ export type MantenimientoAvgAggregateOutputType = {
   id: number | null
   cost: number | null
   equipoId: number | null
-  technicianId: number | null
+  userId: number | null
 }
 
 export type MantenimientoSumAggregateOutputType = {
   id: number | null
   cost: number | null
   equipoId: number | null
-  technicianId: number | null
+  userId: number | null
 }
 
 export type MantenimientoMinAggregateOutputType = {
@@ -49,7 +49,7 @@ export type MantenimientoMinAggregateOutputType = {
   isActive: boolean | null
   createdAt: Date | null
   equipoId: number | null
-  technicianId: number | null
+  userId: number | null
 }
 
 export type MantenimientoMaxAggregateOutputType = {
@@ -61,7 +61,7 @@ export type MantenimientoMaxAggregateOutputType = {
   isActive: boolean | null
   createdAt: Date | null
   equipoId: number | null
-  technicianId: number | null
+  userId: number | null
 }
 
 export type MantenimientoCountAggregateOutputType = {
@@ -73,7 +73,7 @@ export type MantenimientoCountAggregateOutputType = {
   isActive: number
   createdAt: number
   equipoId: number
-  technicianId: number
+  userId: number
   _all: number
 }
 
@@ -82,14 +82,14 @@ export type MantenimientoAvgAggregateInputType = {
   id?: true
   cost?: true
   equipoId?: true
-  technicianId?: true
+  userId?: true
 }
 
 export type MantenimientoSumAggregateInputType = {
   id?: true
   cost?: true
   equipoId?: true
-  technicianId?: true
+  userId?: true
 }
 
 export type MantenimientoMinAggregateInputType = {
@@ -101,7 +101,7 @@ export type MantenimientoMinAggregateInputType = {
   isActive?: true
   createdAt?: true
   equipoId?: true
-  technicianId?: true
+  userId?: true
 }
 
 export type MantenimientoMaxAggregateInputType = {
@@ -113,7 +113,7 @@ export type MantenimientoMaxAggregateInputType = {
   isActive?: true
   createdAt?: true
   equipoId?: true
-  technicianId?: true
+  userId?: true
 }
 
 export type MantenimientoCountAggregateInputType = {
@@ -125,7 +125,7 @@ export type MantenimientoCountAggregateInputType = {
   isActive?: true
   createdAt?: true
   equipoId?: true
-  technicianId?: true
+  userId?: true
   _all?: true
 }
 
@@ -224,7 +224,7 @@ export type MantenimientoGroupByOutputType = {
   isActive: boolean
   createdAt: Date
   equipoId: number
-  technicianId: number
+  userId: number
   _count: MantenimientoCountAggregateOutputType | null
   _avg: MantenimientoAvgAggregateOutputType | null
   _sum: MantenimientoSumAggregateOutputType | null
@@ -259,9 +259,9 @@ export type MantenimientoWhereInput = {
   isActive?: Prisma.BoolFilter<"Mantenimiento"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Mantenimiento"> | Date | string
   equipoId?: Prisma.IntFilter<"Mantenimiento"> | number
-  technicianId?: Prisma.IntFilter<"Mantenimiento"> | number
+  userId?: Prisma.IntFilter<"Mantenimiento"> | number
   equipo?: Prisma.XOR<Prisma.EquipoScalarRelationFilter, Prisma.EquipoWhereInput>
-  technician?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type MantenimientoOrderByWithRelationInput = {
@@ -273,9 +273,9 @@ export type MantenimientoOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   equipo?: Prisma.EquipoOrderByWithRelationInput
-  technician?: Prisma.UserOrderByWithRelationInput
+  User?: Prisma.UserOrderByWithRelationInput
 }
 
 export type MantenimientoWhereUniqueInput = Prisma.AtLeast<{
@@ -290,9 +290,9 @@ export type MantenimientoWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"Mantenimiento"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Mantenimiento"> | Date | string
   equipoId?: Prisma.IntFilter<"Mantenimiento"> | number
-  technicianId?: Prisma.IntFilter<"Mantenimiento"> | number
+  userId?: Prisma.IntFilter<"Mantenimiento"> | number
   equipo?: Prisma.XOR<Prisma.EquipoScalarRelationFilter, Prisma.EquipoWhereInput>
-  technician?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type MantenimientoOrderByWithAggregationInput = {
@@ -304,7 +304,7 @@ export type MantenimientoOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   _count?: Prisma.MantenimientoCountOrderByAggregateInput
   _avg?: Prisma.MantenimientoAvgOrderByAggregateInput
   _max?: Prisma.MantenimientoMaxOrderByAggregateInput
@@ -324,7 +324,7 @@ export type MantenimientoScalarWhereWithAggregatesInput = {
   isActive?: Prisma.BoolWithAggregatesFilter<"Mantenimiento"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Mantenimiento"> | Date | string
   equipoId?: Prisma.IntWithAggregatesFilter<"Mantenimiento"> | number
-  technicianId?: Prisma.IntWithAggregatesFilter<"Mantenimiento"> | number
+  userId?: Prisma.IntWithAggregatesFilter<"Mantenimiento"> | number
 }
 
 export type MantenimientoCreateInput = {
@@ -335,7 +335,7 @@ export type MantenimientoCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   equipo: Prisma.EquipoCreateNestedOneWithoutMantenimientosInput
-  technician: Prisma.UserCreateNestedOneWithoutMantenimientosInput
+  User: Prisma.UserCreateNestedOneWithoutMantenimientosInput
 }
 
 export type MantenimientoUncheckedCreateInput = {
@@ -347,7 +347,7 @@ export type MantenimientoUncheckedCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   equipoId: number
-  technicianId: number
+  userId: number
 }
 
 export type MantenimientoUpdateInput = {
@@ -358,7 +358,7 @@ export type MantenimientoUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   equipo?: Prisma.EquipoUpdateOneRequiredWithoutMantenimientosNestedInput
-  technician?: Prisma.UserUpdateOneRequiredWithoutMantenimientosNestedInput
+  User?: Prisma.UserUpdateOneRequiredWithoutMantenimientosNestedInput
 }
 
 export type MantenimientoUncheckedUpdateInput = {
@@ -370,7 +370,7 @@ export type MantenimientoUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   equipoId?: Prisma.IntFieldUpdateOperationsInput | number
-  technicianId?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type MantenimientoCreateManyInput = {
@@ -382,7 +382,7 @@ export type MantenimientoCreateManyInput = {
   isActive?: boolean
   createdAt?: Date | string
   equipoId: number
-  technicianId: number
+  userId: number
 }
 
 export type MantenimientoUpdateManyMutationInput = {
@@ -403,7 +403,7 @@ export type MantenimientoUncheckedUpdateManyInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   equipoId?: Prisma.IntFieldUpdateOperationsInput | number
-  technicianId?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type MantenimientoListRelationFilter = {
@@ -425,14 +425,14 @@ export type MantenimientoCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MantenimientoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cost?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MantenimientoMaxOrderByAggregateInput = {
@@ -444,7 +444,7 @@ export type MantenimientoMaxOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MantenimientoMinOrderByAggregateInput = {
@@ -456,55 +456,55 @@ export type MantenimientoMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type MantenimientoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cost?: Prisma.SortOrder
   equipoId?: Prisma.SortOrder
-  technicianId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
-export type MantenimientoCreateNestedManyWithoutTechnicianInput = {
-  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput> | Prisma.MantenimientoCreateWithoutTechnicianInput[] | Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput[]
-  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput | Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput[]
-  createMany?: Prisma.MantenimientoCreateManyTechnicianInputEnvelope
+export type MantenimientoCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput> | Prisma.MantenimientoCreateWithoutUserInput[] | Prisma.MantenimientoUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutUserInput | Prisma.MantenimientoCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.MantenimientoCreateManyUserInputEnvelope
   connect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
 }
 
-export type MantenimientoUncheckedCreateNestedManyWithoutTechnicianInput = {
-  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput> | Prisma.MantenimientoCreateWithoutTechnicianInput[] | Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput[]
-  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput | Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput[]
-  createMany?: Prisma.MantenimientoCreateManyTechnicianInputEnvelope
+export type MantenimientoUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput> | Prisma.MantenimientoCreateWithoutUserInput[] | Prisma.MantenimientoUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutUserInput | Prisma.MantenimientoCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.MantenimientoCreateManyUserInputEnvelope
   connect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
 }
 
-export type MantenimientoUpdateManyWithoutTechnicianNestedInput = {
-  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput> | Prisma.MantenimientoCreateWithoutTechnicianInput[] | Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput[]
-  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput | Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput[]
-  upsert?: Prisma.MantenimientoUpsertWithWhereUniqueWithoutTechnicianInput | Prisma.MantenimientoUpsertWithWhereUniqueWithoutTechnicianInput[]
-  createMany?: Prisma.MantenimientoCreateManyTechnicianInputEnvelope
+export type MantenimientoUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput> | Prisma.MantenimientoCreateWithoutUserInput[] | Prisma.MantenimientoUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutUserInput | Prisma.MantenimientoCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.MantenimientoUpsertWithWhereUniqueWithoutUserInput | Prisma.MantenimientoUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.MantenimientoCreateManyUserInputEnvelope
   set?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   disconnect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   delete?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   connect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
-  update?: Prisma.MantenimientoUpdateWithWhereUniqueWithoutTechnicianInput | Prisma.MantenimientoUpdateWithWhereUniqueWithoutTechnicianInput[]
-  updateMany?: Prisma.MantenimientoUpdateManyWithWhereWithoutTechnicianInput | Prisma.MantenimientoUpdateManyWithWhereWithoutTechnicianInput[]
+  update?: Prisma.MantenimientoUpdateWithWhereUniqueWithoutUserInput | Prisma.MantenimientoUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.MantenimientoUpdateManyWithWhereWithoutUserInput | Prisma.MantenimientoUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.MantenimientoScalarWhereInput | Prisma.MantenimientoScalarWhereInput[]
 }
 
-export type MantenimientoUncheckedUpdateManyWithoutTechnicianNestedInput = {
-  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput> | Prisma.MantenimientoCreateWithoutTechnicianInput[] | Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput[]
-  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput | Prisma.MantenimientoCreateOrConnectWithoutTechnicianInput[]
-  upsert?: Prisma.MantenimientoUpsertWithWhereUniqueWithoutTechnicianInput | Prisma.MantenimientoUpsertWithWhereUniqueWithoutTechnicianInput[]
-  createMany?: Prisma.MantenimientoCreateManyTechnicianInputEnvelope
+export type MantenimientoUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput> | Prisma.MantenimientoCreateWithoutUserInput[] | Prisma.MantenimientoUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.MantenimientoCreateOrConnectWithoutUserInput | Prisma.MantenimientoCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.MantenimientoUpsertWithWhereUniqueWithoutUserInput | Prisma.MantenimientoUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.MantenimientoCreateManyUserInputEnvelope
   set?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   disconnect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   delete?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
   connect?: Prisma.MantenimientoWhereUniqueInput | Prisma.MantenimientoWhereUniqueInput[]
-  update?: Prisma.MantenimientoUpdateWithWhereUniqueWithoutTechnicianInput | Prisma.MantenimientoUpdateWithWhereUniqueWithoutTechnicianInput[]
-  updateMany?: Prisma.MantenimientoUpdateManyWithWhereWithoutTechnicianInput | Prisma.MantenimientoUpdateManyWithWhereWithoutTechnicianInput[]
+  update?: Prisma.MantenimientoUpdateWithWhereUniqueWithoutUserInput | Prisma.MantenimientoUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.MantenimientoUpdateManyWithWhereWithoutUserInput | Prisma.MantenimientoUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.MantenimientoScalarWhereInput | Prisma.MantenimientoScalarWhereInput[]
 }
 
@@ -562,7 +562,7 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type MantenimientoCreateWithoutTechnicianInput = {
+export type MantenimientoCreateWithoutUserInput = {
   scheduledAt: Date | string
   status?: $Enums.MantenimientoStatus
   notes?: string | null
@@ -572,7 +572,7 @@ export type MantenimientoCreateWithoutTechnicianInput = {
   equipo: Prisma.EquipoCreateNestedOneWithoutMantenimientosInput
 }
 
-export type MantenimientoUncheckedCreateWithoutTechnicianInput = {
+export type MantenimientoUncheckedCreateWithoutUserInput = {
   id?: number
   scheduledAt: Date | string
   status?: $Enums.MantenimientoStatus
@@ -583,30 +583,30 @@ export type MantenimientoUncheckedCreateWithoutTechnicianInput = {
   equipoId: number
 }
 
-export type MantenimientoCreateOrConnectWithoutTechnicianInput = {
+export type MantenimientoCreateOrConnectWithoutUserInput = {
   where: Prisma.MantenimientoWhereUniqueInput
-  create: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput>
+  create: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput>
 }
 
-export type MantenimientoCreateManyTechnicianInputEnvelope = {
-  data: Prisma.MantenimientoCreateManyTechnicianInput | Prisma.MantenimientoCreateManyTechnicianInput[]
+export type MantenimientoCreateManyUserInputEnvelope = {
+  data: Prisma.MantenimientoCreateManyUserInput | Prisma.MantenimientoCreateManyUserInput[]
   skipDuplicates?: boolean
 }
 
-export type MantenimientoUpsertWithWhereUniqueWithoutTechnicianInput = {
+export type MantenimientoUpsertWithWhereUniqueWithoutUserInput = {
   where: Prisma.MantenimientoWhereUniqueInput
-  update: Prisma.XOR<Prisma.MantenimientoUpdateWithoutTechnicianInput, Prisma.MantenimientoUncheckedUpdateWithoutTechnicianInput>
-  create: Prisma.XOR<Prisma.MantenimientoCreateWithoutTechnicianInput, Prisma.MantenimientoUncheckedCreateWithoutTechnicianInput>
+  update: Prisma.XOR<Prisma.MantenimientoUpdateWithoutUserInput, Prisma.MantenimientoUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.MantenimientoCreateWithoutUserInput, Prisma.MantenimientoUncheckedCreateWithoutUserInput>
 }
 
-export type MantenimientoUpdateWithWhereUniqueWithoutTechnicianInput = {
+export type MantenimientoUpdateWithWhereUniqueWithoutUserInput = {
   where: Prisma.MantenimientoWhereUniqueInput
-  data: Prisma.XOR<Prisma.MantenimientoUpdateWithoutTechnicianInput, Prisma.MantenimientoUncheckedUpdateWithoutTechnicianInput>
+  data: Prisma.XOR<Prisma.MantenimientoUpdateWithoutUserInput, Prisma.MantenimientoUncheckedUpdateWithoutUserInput>
 }
 
-export type MantenimientoUpdateManyWithWhereWithoutTechnicianInput = {
+export type MantenimientoUpdateManyWithWhereWithoutUserInput = {
   where: Prisma.MantenimientoScalarWhereInput
-  data: Prisma.XOR<Prisma.MantenimientoUpdateManyMutationInput, Prisma.MantenimientoUncheckedUpdateManyWithoutTechnicianInput>
+  data: Prisma.XOR<Prisma.MantenimientoUpdateManyMutationInput, Prisma.MantenimientoUncheckedUpdateManyWithoutUserInput>
 }
 
 export type MantenimientoScalarWhereInput = {
@@ -621,7 +621,7 @@ export type MantenimientoScalarWhereInput = {
   isActive?: Prisma.BoolFilter<"Mantenimiento"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Mantenimiento"> | Date | string
   equipoId?: Prisma.IntFilter<"Mantenimiento"> | number
-  technicianId?: Prisma.IntFilter<"Mantenimiento"> | number
+  userId?: Prisma.IntFilter<"Mantenimiento"> | number
 }
 
 export type MantenimientoCreateWithoutEquipoInput = {
@@ -631,7 +631,7 @@ export type MantenimientoCreateWithoutEquipoInput = {
   cost?: number
   isActive?: boolean
   createdAt?: Date | string
-  technician: Prisma.UserCreateNestedOneWithoutMantenimientosInput
+  User: Prisma.UserCreateNestedOneWithoutMantenimientosInput
 }
 
 export type MantenimientoUncheckedCreateWithoutEquipoInput = {
@@ -642,7 +642,7 @@ export type MantenimientoUncheckedCreateWithoutEquipoInput = {
   cost?: number
   isActive?: boolean
   createdAt?: Date | string
-  technicianId: number
+  userId: number
 }
 
 export type MantenimientoCreateOrConnectWithoutEquipoInput = {
@@ -671,7 +671,7 @@ export type MantenimientoUpdateManyWithWhereWithoutEquipoInput = {
   data: Prisma.XOR<Prisma.MantenimientoUpdateManyMutationInput, Prisma.MantenimientoUncheckedUpdateManyWithoutEquipoInput>
 }
 
-export type MantenimientoCreateManyTechnicianInput = {
+export type MantenimientoCreateManyUserInput = {
   id?: number
   scheduledAt: Date | string
   status?: $Enums.MantenimientoStatus
@@ -682,7 +682,7 @@ export type MantenimientoCreateManyTechnicianInput = {
   equipoId: number
 }
 
-export type MantenimientoUpdateWithoutTechnicianInput = {
+export type MantenimientoUpdateWithoutUserInput = {
   scheduledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMantenimientoStatusFieldUpdateOperationsInput | $Enums.MantenimientoStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -692,7 +692,7 @@ export type MantenimientoUpdateWithoutTechnicianInput = {
   equipo?: Prisma.EquipoUpdateOneRequiredWithoutMantenimientosNestedInput
 }
 
-export type MantenimientoUncheckedUpdateWithoutTechnicianInput = {
+export type MantenimientoUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   scheduledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMantenimientoStatusFieldUpdateOperationsInput | $Enums.MantenimientoStatus
@@ -703,7 +703,7 @@ export type MantenimientoUncheckedUpdateWithoutTechnicianInput = {
   equipoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type MantenimientoUncheckedUpdateManyWithoutTechnicianInput = {
+export type MantenimientoUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   scheduledAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMantenimientoStatusFieldUpdateOperationsInput | $Enums.MantenimientoStatus
@@ -722,7 +722,7 @@ export type MantenimientoCreateManyEquipoInput = {
   cost?: number
   isActive?: boolean
   createdAt?: Date | string
-  technicianId: number
+  userId: number
 }
 
 export type MantenimientoUpdateWithoutEquipoInput = {
@@ -732,7 +732,7 @@ export type MantenimientoUpdateWithoutEquipoInput = {
   cost?: Prisma.FloatFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technician?: Prisma.UserUpdateOneRequiredWithoutMantenimientosNestedInput
+  User?: Prisma.UserUpdateOneRequiredWithoutMantenimientosNestedInput
 }
 
 export type MantenimientoUncheckedUpdateWithoutEquipoInput = {
@@ -743,7 +743,7 @@ export type MantenimientoUncheckedUpdateWithoutEquipoInput = {
   cost?: Prisma.FloatFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technicianId?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type MantenimientoUncheckedUpdateManyWithoutEquipoInput = {
@@ -754,7 +754,7 @@ export type MantenimientoUncheckedUpdateManyWithoutEquipoInput = {
   cost?: Prisma.FloatFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  technicianId?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -768,9 +768,9 @@ export type MantenimientoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   isActive?: boolean
   createdAt?: boolean
   equipoId?: boolean
-  technicianId?: boolean
+  userId?: boolean
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mantenimiento"]>
 
 export type MantenimientoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -782,9 +782,9 @@ export type MantenimientoSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   isActive?: boolean
   createdAt?: boolean
   equipoId?: boolean
-  technicianId?: boolean
+  userId?: boolean
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mantenimiento"]>
 
 export type MantenimientoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -796,9 +796,9 @@ export type MantenimientoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   isActive?: boolean
   createdAt?: boolean
   equipoId?: boolean
-  technicianId?: boolean
+  userId?: boolean
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mantenimiento"]>
 
 export type MantenimientoSelectScalar = {
@@ -810,28 +810,28 @@ export type MantenimientoSelectScalar = {
   isActive?: boolean
   createdAt?: boolean
   equipoId?: boolean
-  technicianId?: boolean
+  userId?: boolean
 }
 
-export type MantenimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "scheduledAt" | "status" | "notes" | "cost" | "isActive" | "createdAt" | "equipoId" | "technicianId", ExtArgs["result"]["mantenimiento"]>
+export type MantenimientoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "scheduledAt" | "status" | "notes" | "cost" | "isActive" | "createdAt" | "equipoId" | "userId", ExtArgs["result"]["mantenimiento"]>
 export type MantenimientoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MantenimientoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MantenimientoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   equipo?: boolean | Prisma.EquipoDefaultArgs<ExtArgs>
-  technician?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $MantenimientoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Mantenimiento"
   objects: {
     equipo: Prisma.$EquipoPayload<ExtArgs>
-    technician: Prisma.$UserPayload<ExtArgs>
+    User: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -842,7 +842,7 @@ export type $MantenimientoPayload<ExtArgs extends runtime.Types.Extensions.Inter
     isActive: boolean
     createdAt: Date
     equipoId: number
-    technicianId: number
+    userId: number
   }, ExtArgs["result"]["mantenimiento"]>
   composites: {}
 }
@@ -1238,7 +1238,7 @@ readonly fields: MantenimientoFieldRefs;
 export interface Prisma__MantenimientoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   equipo<T extends Prisma.EquipoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EquipoDefaultArgs<ExtArgs>>): Prisma.Prisma__EquipoClient<runtime.Types.Result.GetResult<Prisma.$EquipoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  technician<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1276,7 +1276,7 @@ export interface MantenimientoFieldRefs {
   readonly isActive: Prisma.FieldRef<"Mantenimiento", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Mantenimiento", 'DateTime'>
   readonly equipoId: Prisma.FieldRef<"Mantenimiento", 'Int'>
-  readonly technicianId: Prisma.FieldRef<"Mantenimiento", 'Int'>
+  readonly userId: Prisma.FieldRef<"Mantenimiento", 'Int'>
 }
     
 

@@ -81,10 +81,10 @@ model Mantenimiento {
   
   // Claves foráneas para Equipo y Técnico asignado
   equipoId    Int                 @map("equipo_id")
-  technicianId Int                @map("technician_id")
+  userId      Int                 @map("user_id")
   
   equipo      Equipo              @relation(fields: [equipoId], references: [id], onDelete: Cascade)
-  technician  User                @relation(fields: [technicianId], references: [id], onDelete: Cascade)
+  User        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("mantenimientos")
   @@schema("inventory")

@@ -27,7 +27,7 @@ export class MantenimientosService {
       const mantenimiento = await tx.mantenimiento.create({
         data: {
           equipoId: dto.equipoId,
-          technicianId: dto.technicianId,
+          userId: dto.userId,
           scheduledAt: new Date(dto.scheduledAt),
           notes: dto.notes,
           cost: dto.cost,
